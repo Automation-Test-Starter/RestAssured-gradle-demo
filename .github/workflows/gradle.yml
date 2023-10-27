@@ -1,0 +1,40 @@
+name: Gradle and REST Assured Tests
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      - name: Build with Gradle
+        run: |
+          ./gradlew clean build
+
+      - name: Run REST Assured Tests
+        run: |
+          ./gradlew test
+
+      - name: Archive REST-Assured results
+        uses: actions/upload-artifact@v2
+        with:
+          name: REST-Assured-results
+          path: /reports/tests/test
+
+      - name: Upload REST-Assured results to GitHub
+        uses: actions/upload-artifact@v2
+        with:
+          name: REST-Assured-results
+          path: /reports/tests/test
