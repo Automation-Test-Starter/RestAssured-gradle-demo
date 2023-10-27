@@ -26,13 +26,13 @@ jobs:
           arguments: build
 
       - name: Archive REST-Assured results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: REST-Assured-results
           path: build/reports/tests/test
 
       - name: Upload REST-Assured results to GitHub
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: REST-Assured-results
           path: build/reports/tests/test
