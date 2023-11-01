@@ -1,26 +1,33 @@
 package com.example;
 
+import io.qameta.allure.*;
+import io.qameta.allure.restassured.AllureRestAssured;
 import org.testng.annotations.Test;
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
+@Epic("REST API Regression Testing using TestNG")
+@Feature("Verify that the Get and POST API returns correctly")
 public class TestDemo {
 
-	@Test(description = "Verify that the Get Post API returns correctly")
+	@Test(description = "To get the details of post with id 1", priority = 1)
+	@Story("GET Request with Valid post id")
+	@Severity(SeverityLevel.NORMAL)
+	@Description("Test Description : Verify that the GET API returns correctly")
 	public void verifyGetAPI() {
 
 		// Given
 		given()
+				.filter(new AllureRestAssured()) //设置 AllureRestAssured 过滤器，用来在测试报告中展示请求和响应信息
 				.baseUri("https://jsonplaceholder.typicode.com")
-	            .header("Content-Type", "application/json")
+				.header("Content-Type", "application/json")
 
-		// When
-		.when()
+				// When
+				.when()
 				.get("/posts/1")
 
-		// Then
-		.then()
+				// Then
+				.then()
 				.statusCode(200)
 				// To verify correct value
 				.body("userId", equalTo(1))
@@ -28,11 +35,14 @@ public class TestDemo {
 				.body("title", equalTo("sunt aut facere repellat provident occaecati excepturi optio reprehenderit"))
 				.body("body", equalTo("quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"));
 	}
-	@Test(description = "Verify that the publish post API returns correctly")
-	public void verifyPostAPI() {
 
-		// Given
+	@Test(description = "To create a new post", priority = 2)
+	@Story("POST Request")
+	@Severity(SeverityLevel.NORMAL)
+	@Description("Test Description : Verify that the post API returns correctly")
+	public void verifyPostAPI() {        // Given
 		given()
+				.filter(new AllureRestAssured()) //设置 AllureRestAssured 过滤器，用来在测试报告中展示请求和响应信息
 				.baseUri("https://jsonplaceholder.typicode.com")
 				.header("Content-Type", "application/json")
 
@@ -50,4 +60,5 @@ public class TestDemo {
 				.body("title", equalTo("foo"))
 				.body("body", equalTo("bar"));
 	}
+
 }

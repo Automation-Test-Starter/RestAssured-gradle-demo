@@ -26,3 +26,4 @@ build
 # Ignore idea and vscode output directory
 .idea
 .vscode
+allure-results
