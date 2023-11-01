@@ -1,6 +1,9 @@
 # RestAssured-gradle-demo
 a RestAssured demo project with gradle tool
 
+Test Framework: TestNG
+Test report: allure
+
 **English** | [中文](/README.md)
 
 ## Environment preparation
@@ -13,7 +16,8 @@ a RestAssured demo project with gradle tool
 - RestAssured
 - TestNG
 - Gradle
-- Github action
+- allure
+- GitHub action
 
 ## How to run
 
