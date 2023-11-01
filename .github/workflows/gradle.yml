@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  Run-Rest-Assured-Tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,19 +20,24 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
-      - name: Build and Run REST Assured Tests with Gradle
+      - name: Build with Gradle
         uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
         with:
           arguments: build
 
-      - name: Archive REST-Assured results
-        uses: actions/upload-artifact@v3
+      - name: Run REST Assured Tests with Gradle
+        uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
         with:
-          name: REST-Assured-results
-          path: build/reports/tests/test
+          arguments: clean test
 
-      - name: Upload REST-Assured results to GitHub
+      - name: Archive REST-Assured allure reports
         uses: actions/upload-artifact@v3
         with:
-          name: REST-Assured-results
-          path: build/reports/tests/test
+          name: REST-Assured-allure-reports
+          path: build/allure-results
+
+      - name: Upload REST-Assured allure reports to GitHub
+        uses: actions/upload-artifact@v3
+        with:
+          name: REST-Assured-allure-reports
+          path: build/allure-results

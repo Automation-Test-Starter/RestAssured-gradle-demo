@@ -1,6 +1,7 @@
 # RestAssured-gradle-demo
 
 一个使用 gradle 工具的 RestAssured 演示项目
+测试框架：TestNG 测试报告：allure
 
 **中文** | [English](/README_EN.md)
 
@@ -14,7 +15,8 @@
 - RestAssured
 - TestNG
 - Gradle
-- Github action
+- allure
+- GitHub action
 
 ## 项目运行
 
