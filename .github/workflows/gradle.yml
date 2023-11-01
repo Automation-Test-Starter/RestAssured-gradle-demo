@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  Run-Rest-Assured-Tests:
     runs-on: ubuntu-latest
 
     steps:
